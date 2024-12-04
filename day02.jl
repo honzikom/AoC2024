@@ -3,15 +3,18 @@ using DataFrames
 
 cd(@__DIR__)
 
-data = CSV.read("INPUT/day01.csv", DataFrame, header = false, ignorerepeated = true, delim = " ")
-x = sort(data[:, 1])
-y = sort(data[:, 2])
+data = CSV.read("INPUT/day02.csv", DataFrame, header = false, ignorerepeated = true, delim = " ")
 
-println("Solution of part 1: ", sum(abs.(x .- y)))
-
-sol = 0
-for i in 1:length(x)
-    sol += x[i] * sum(x[i] .== y)
+safeReports = 0
+for ind in 1:nrow(data)
+    x = collect(skipmissing(data[ind, :]))
+    for drop in 1:length(x)
+        y = x[setdiff(1:end, drop)]
+        if all(abs.(diff(y)) .<= 3) && (all(diff(y) .> 0) || all(diff(y) .< 0))
+            safeReports += 1
+            break
+        end
+    end
 end
 
-println("Solution of part 2: ", sol)
+println("Solution of part 2:", safeReports)
