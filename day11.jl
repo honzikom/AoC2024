@@ -51,7 +51,7 @@ startingVec = fill(0, length(possibleValues))
 startingVec[findall(x -> x in input, possibleValues)] .= 1
 
 blinkMatrix = sparse(blinkMatrix)
-B25 = blinkMatrix^75
+B25 = blinkMatrix^25
 print("Solution of part 1 is:", sum(startingVec' * B25))
 
 B75 = blinkMatrix^75
