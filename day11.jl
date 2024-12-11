@@ -52,7 +52,7 @@ startingVec[findall(x -> x in input, possibleValues)] .= 1
 
 blinkMatrix = sparse(blinkMatrix)
 B25 = blinkMatrix^25
-print("Solution of part 1 is:", sum(startingVec' * B25))
+println("Solution of part 1 is:", sum(startingVec' * B25))
 
 B75 = blinkMatrix^75
-print("Solution of part 2 is:", sum(startingVec' * B75))
+println("Solution of part 2 is:", sum(startingVec' * B75))
